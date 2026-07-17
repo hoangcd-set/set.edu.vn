@@ -1,7 +1,7 @@
 import './globals.css';
 import Link from 'next/link';
 import { Lora, Be_Vietnam_Pro } from 'next/font/google';
-import { LogoWordmark, LogoEmblem } from '../components/Logo';
+import { LogoWordmark } from '../components/Logo';
 
 const lora = Lora({ subsets: ['vietnamese', 'latin'], variable: '--font-lora', weight: ['400', '600', '700'] });
 const bvp = Be_Vietnam_Pro({ subsets: ['vietnamese', 'latin'], variable: '--font-bvp', weight: ['400', '500', '600', '700'] });
@@ -35,7 +35,7 @@ export default function RootLayout({ children }) {
         <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
           <div className="wrap flex items-center gap-7 h-[66px]">
             <Link href="/" className="flex items-center gap-3" aria-label="SET.edu.vn — Trang chủ">
-              <LogoWordmark className="w-[82px] h-[58px]" />
+              <LogoWordmark className="w-[76px] h-[52px]" />
               <span className="hidden sm:block leading-tight">
                 <span className="font-extrabold">SET.edu.vn</span>
                 <small className="block text-[10.5px] text-ink-soft font-normal">Đào tạo & Công nghệ Hỗ trợ Đổi mới sáng tạo</small>
@@ -54,7 +54,7 @@ export default function RootLayout({ children }) {
           <div className="wrap grid gap-8 md:grid-cols-4 py-12">
             <div className="md:col-span-1">
               <div className="flex items-center gap-3 mb-3">
-                <LogoEmblem className="w-11 h-11" />
+                <LogoWordmark variant="white" className="w-[72px] h-[50px]" />
                 <h4 className="text-white font-sans font-bold uppercase text-sm tracking-wide">Trung tâm SET</h4>
               </div>
               <p className="mb-2">Trung tâm Đào tạo và Công nghệ Hỗ trợ Đổi mới sáng tạo<br /><em>Support Education and Technology Center</em></p>

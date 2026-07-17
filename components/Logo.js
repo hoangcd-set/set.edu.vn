@@ -1,22 +1,59 @@
-export function LogoWordmark({ dark = false, className = '' }) {
-  const main = dark ? '#FFFFFF' : '#0E6B3D';
-  const channel = dark ? '#0C5D34' : '#FFFFFF';
-  const swoosh = dark ? '#7AC143' : '#0E6B3D';
+const T = 58;            // độ dày nét chữ
+const CX = 654;          // tâm cột accent của chữ T
+
+function Letters({ fill }) {
+  const r = 14;
   return (
-    <svg viewBox="0 -70 350 245" className={className} role="img" aria-label="Logo SET">
-      <path d="M 99.5,64.6 A 27 27 0 1 0 75,103 A 27 27 0 1 1 50.5,141.4" fill="none" stroke={main} strokeWidth="26" />
-      <circle cx="190" cy="121" r="34" fill="none" stroke={main} strokeWidth="26" />
-      <rect x="154" y="110" width="72" height="21" fill={main} />
-      <path d="M 194,125 L 238,145 L 226,165 Z" fill={channel} />
-      <rect x="272" y="42" width="24" height="126" rx="7" fill={main} />
-      <rect x="256" y="66" width="62" height="22" rx="7" fill={main} />
-      <path d="M 0,132 C 90,72 170,58 236,62" fill="none" stroke={channel} strokeWidth="9" />
-      <path d="M 2,118 C 90,56 175,44 240,50 C 172,54 90,70 14,130 Z" fill={swoosh} />
-      <g transform="translate(284,-6)">
-        <path d="M 0,-22 C 14,-12 16,6 2,16 C -13,7 -15,-12 0,-22 Z" fill="#7AC143" />
-        <path d="M -13,24 l 13,10 13,-10" fill="none" stroke="#7AC143" strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" />
-        <path d="M -13,39 l 13,10 13,-10" fill="none" stroke={dark ? '#CFE8B8' : '#7AC143'} strokeWidth="7.5" strokeLinecap="round" strokeLinejoin="round" />
-      </g>
+    <g fill={fill}>
+      {/* S — dựng từ 5 thanh vuông bo góc */}
+      <rect x="0" y="0" width="210" height={T} rx={r} />
+      <rect x="0" y="0" width={T} height="179" rx={r} />
+      <rect x="0" y="121" width="210" height={T} rx={r} />
+      <rect x="152" y="121" width={T} height="179" rx={r} />
+      <rect x="0" y="242" width="210" height={T} rx={r} />
+      {/* E */}
+      <rect x="262" y="0" width={T} height="300" rx={r} />
+      <rect x="262" y="0" width="210" height={T} rx={r} />
+      <rect x="262" y="121" width="188" height={T} rx={r} />
+      <rect x="262" y="242" width="210" height={T} rx={r} />
+      {/* T — thanh ngang; thân chữ là cột accent */}
+      <rect x="524" y="0" width="260" height={T} rx={r} />
+    </g>
+  );
+}
+
+function Chevron({ y, dir = 'up', color }) {
+  // dir 'up': đỉnh hướng lên; 'down': đỉnh hướng xuống
+  const tip = dir === 'up' ? y - 34 : y + 34;
+  return (
+    <path d={`M ${CX - 40},${y} L ${CX},${tip} L ${CX + 40},${y}`}
+      fill="none" stroke={color} strokeWidth="26" strokeLinecap="butt" strokeLinejoin="miter" />
+  );
+}
+
+/**
+ * Logo SET chính thức (theo bộ nhận diện 7/2026):
+ * chữ SET vuông kỹ thuật; chữ T mang cột biểu tượng — giọt lá tri thức,
+ * chevron hội tụ về thanh ngang và mũi tên vươn lên từ gốc.
+ * variant: 'color' (xanh + lá non, nền sáng) | 'white' (trắng, nền đậm)
+ */
+export function LogoWordmark({ variant = 'color', className = '' }) {
+  const main = variant === 'white' ? '#FFFFFF' : '#0E6B3D';
+  const accent = variant === 'white' ? '#FFFFFF' : '#7AC143';
+  const vein = variant === 'white' ? '#0A4A2A' : '#FFFFFF';
+  return (
+    <svg viewBox="-10 -250 810 560" className={className} role="img" aria-label="Logo SET">
+      <Letters fill={main} />
+      {/* giọt lá tri thức */}
+      <path d={`M ${CX},-244 C ${CX + 34},-206 ${CX + 38},-168 ${CX},-138 C ${CX - 38},-168 ${CX - 34},-206 ${CX},-244 Z`} fill={accent} />
+      <path d={`M ${CX - 10},-152 C ${CX - 4},-176 ${CX + 4},-196 ${CX + 14},-212`} fill="none" stroke={vein} strokeWidth="9" strokeLinecap="round" />
+      {/* chevron hội tụ về thanh ngang */}
+      <Chevron y={-96} dir="down" color={accent} />
+      <Chevron y={-44} dir="down" color={accent} />
+      <Chevron y={132} dir="up" color={accent} />
+      <Chevron y={184} dir="up" color={accent} />
+      {/* mũi tên vươn lên từ gốc */}
+      <path d={`M ${CX},208 L ${CX + 50},268 L ${CX + 29},268 L ${CX + 29},300 L ${CX - 29},300 L ${CX - 29},268 L ${CX - 50},268 Z`} fill={main} />
     </svg>
   );
 }

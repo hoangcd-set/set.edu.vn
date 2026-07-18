@@ -55,7 +55,7 @@ export default function Dashboard() {
                 <div className="h-2 rounded-full bg-brand-100 overflow-hidden">
                   <div className="h-full bg-lime rounded-full" style={{ width: `${c.pct}%` }} />
                 </div>
-                {c.pct === 100 && <p className="text-xs text-lime-dark font-bold mt-2 m-0">✓ Hoàn thành — chứng nhận sẽ được cấp và xác thực tại set.edu.vn/verify</p>}
+                {c.pct === 100 && <p className="text-xs text-lime-dark font-bold mt-2 m-0">✓ Hoàn thành — mở khóa học để nhận chứng nhận</p>}
               </div>
             </Link>
           ))}

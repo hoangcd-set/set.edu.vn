@@ -113,7 +113,7 @@ function Quiz({ lessonId, passPercent, onPassed }) {
   }
 
   if (!qs) return <p className="text-ink-soft">Đang tải câu hỏi…</p>;
-  if (!qs.length) return <p className="text-ink-soft">Bài trắc nghiệm chưa có câu hỏi.</p>;
+  if (!qs.length) return <p className="text-ink-soft">Bộ câu hỏi của bài này đang được biên soạn theo Đề cương đã thẩm định — sẽ phát hành trước ngày khai giảng. Bạn có thể học tiếp các bài khác.</p>;
 
   return (
     <div className="card p-6">

@@ -53,6 +53,9 @@ export default async function VerifyPage({ searchParams }) {
           <p className="text-xs text-ink-soft mt-4 m-0">
             Đơn vị cấp: Trung tâm Đào tạo và Công nghệ Hỗ trợ Đổi mới sáng tạo (SET) — Viện Nghiên cứu Công nghệ Hỗ trợ Nông nghiệp.
           </p>
+          {cert.status === 'valid' && (
+            <a href={`/verify/print?no=${cert.cert_no}`} className="inline-block mt-4 btn-green text-sm">🖨 Bản in chứng nhận (PDF)</a>
+          )}
         </div>
       )}
     </div>

@@ -45,8 +45,10 @@ function CertPanel({ courseId }) {
       {s.cert ? (
         <div className="mt-3 text-sm">
           <p className="m-0">Chứng nhận số <b className="tabular-nums">{s.cert.cert_no}</b> đã được cấp ngày {new Date(s.cert.issued_on).toLocaleDateString('vi-VN')}.</p>
+          <a className="text-brand-700 underline font-semibold mr-4" target="_blank" rel="noreferrer"
+            href={`https://set.edu.vn/verify?no=${s.cert.cert_no}`}>Xác thực tại set.edu.vn/verify →</a>
           <a className="text-brand-700 underline font-semibold" target="_blank" rel="noreferrer"
-            href={`https://set.edu.vn/verify?no=${s.cert.cert_no}`}>Xem và xác thực chứng nhận tại set.edu.vn/verify →</a>
+            href={`https://set.edu.vn/verify/print?no=${s.cert.cert_no}`}>🖨 Bản in chứng nhận (PDF) →</a>
         </div>
       ) : (
         <div className="mt-3">

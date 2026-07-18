@@ -102,6 +102,14 @@ export default async function CourseDetail({ params }) {
         <aside className="lg:sticky lg:top-24 self-start">
           <h2 className="text-xl mb-4">Đăng ký / nhận tư vấn</h2>
           <RegisterForm courseId={course.id} sessions={sessions || []} />
+          <div className="card p-5 mt-5 text-sm">
+            <p className="font-bold text-brand-900 m-0 mb-2">📚 Học liệu trực tuyến kèm khóa học</p>
+            <p className="text-ink-soft m-0">
+              100% buổi học có video bài giảng, bài đọc chuyên sâu và trắc nghiệm trên nền tảng{' '}
+              <a className="text-brand-700 underline font-semibold" href="https://lms.set.edu.vn">lms.set.edu.vn</a>.
+              Hoàn thành khóa học được cấp chứng nhận điện tử, xác thực tại <a className="text-brand-700 underline" href="/verify">set.edu.vn/verify</a>.
+            </p>
+          </div>
         </aside>
       </div>
     </>

@@ -98,6 +98,15 @@ function Registrations({ api, onMsg }) {
     try { await api('registrations', { method: 'PATCH', body: JSON.stringify({ id, status }) }); reload(); }
     catch (e) { onMsg('Lỗi: ' + e.message); }
   }
+  async function grantLms(id) {
+    try {
+      const r = await api('lms-enroll', { method: 'POST', body: JSON.stringify({ registration_id: id }) });
+      onMsg(r.temp_password
+        ? `Đã tạo tài khoản LMS ${r.email} — mật khẩu tạm: ${r.temp_password} (chỉ hiện 1 lần, gửi ngay cho học viên)`
+        : `Tài khoản ${r.email} đã có sẵn — đã ghi danh vào khóa học ✓`);
+      reload();
+    } catch (e) { onMsg('Lỗi cấp tài khoản: ' + e.message); }
+  }
   return (
     <div className="card overflow-x-auto">
       <table className="w-full text-sm">
@@ -115,6 +124,10 @@ function Registrations({ api, onMsg }) {
                 <select value={r.status} onChange={(e) => setStatus(r.id, e.target.value)} className="border border-line rounded px-2 py-1">
                   {Object.entries(REG_STATUS).map(([k, v]) => <option key={k} value={k}>{v}</option>)}
                 </select>
+                {r.course_id && r.status !== 'confirmed' && (
+                  <button onClick={() => grantLms(r.id)}
+                    className="block mt-1 text-xs font-bold text-brand-700 underline cursor-pointer">Cấp tài khoản LMS →</button>
+                )}
               </td>
             </tr>
           ))}
